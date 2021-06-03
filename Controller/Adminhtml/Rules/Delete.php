@@ -34,11 +34,12 @@ use Mageplaza\CustomPrice\Controller\Adminhtml\Rules;
 class Delete extends Rules
 {
     /**
-     * @return ResponseInterface|ResultInterface
+     * @return ResponseInterface|ResultRedirect|ResultInterface
      */
     public function execute()
     {
         $ruleId = $this->getRequest()->getParam('rule_id');
+
         if ($ruleId) {
             $rule = $this->_initRule();
             $rule->load($ruleId);
@@ -61,7 +62,8 @@ class Delete extends Rules
     }
 
     /**
-     * @param string $path
+     * @param $path
+     * @param array $params
      *
      * @return ResultRedirect
      */

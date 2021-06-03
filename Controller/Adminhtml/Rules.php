@@ -25,10 +25,8 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Ui\Component\MassAction\Filter;
+use Mageplaza\CustomPrice\Model\Rules as ModelRules;
 use Mageplaza\CustomPrice\Model\RulesFactory;
-use Mageplaza\CustomPrice\Model\ResourceModel\Rules\CollectionFactory;
-use Mageplaza\CustomPrice\Model\ResourceModel\RulesFactory as ResourceFactory;
 use Magento\Catalog\Model\ProductRepository;
 
 /**
@@ -55,22 +53,6 @@ abstract class Rules extends Action
     protected $_rulesFactory;
 
     /**
-     * @var ResourceFactory
-     */
-    protected $_resourceFactory;
-
-    /**
-     * Mass Action Filter
-     * @var Filter
-     */
-    public $filter;
-
-    /**
-     * @var CollectionFactory
-     */
-    public $collectionFactory;
-
-    /**
      * @var ProductRepository
      */
     protected $productRepo;
@@ -82,9 +64,6 @@ abstract class Rules extends Action
      * @param PageFactory $resultPageFactory
      * @param Registry $coreRegistry
      * @param RulesFactory $rulesFactory
-     * @param ResourceFactory $resourceFactory
-     * @param Filter $filter
-     * @param CollectionFactory $collectionFactory
      * @param ProductRepository $productRepository
      */
     public function __construct(
@@ -92,24 +71,18 @@ abstract class Rules extends Action
         PageFactory $resultPageFactory,
         Registry $coreRegistry,
         RulesFactory $rulesFactory,
-        ResourceFactory $resourceFactory,
-        Filter $filter,
-        CollectionFactory $collectionFactory,
         ProductRepository $productRepository
     ) {
         $this->_coreRegistry      = $coreRegistry;
         $this->_resultPageFactory = $resultPageFactory;
         $this->_rulesFactory      = $rulesFactory;
-        $this->_resourceFactory   = $resourceFactory;
-        $this->filter             = $filter;
-        $this->collectionFactory  = $collectionFactory;
         $this->productRepo        = $productRepository;
 
         parent::__construct($context);
     }
 
     /**
-     * @return bool|\Mageplaza\CustomPrice\Model\Rules
+     * @return false|ModelRules
      */
     protected function _initRule()
     {

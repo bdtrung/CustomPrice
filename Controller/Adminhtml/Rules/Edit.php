@@ -21,20 +21,11 @@
 
 namespace Mageplaza\CustomPrice\Controller\Adminhtml\Rules;
 
-use Magento\Backend\App\Action\Context;
-use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Registry;
 use Magento\Framework\View\Result\Page;
-use Magento\Framework\View\Result\PageFactory;
-use Magento\Ui\Component\MassAction\Filter;
 use Mageplaza\CustomPrice\Controller\Adminhtml\Rules;
-use Mageplaza\CustomPrice\Model\ResourceModel\Rules\CollectionFactory;
-use Mageplaza\CustomPrice\Model\ResourceModel\RulesFactory as ResourceFactory;
-use Mageplaza\CustomPrice\Model\RulesFactory;
 
 /**
  * Class Edit

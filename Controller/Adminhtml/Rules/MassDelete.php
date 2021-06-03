@@ -69,7 +69,7 @@ class MassDelete extends Action
     }
 
     /**
-     * @return $this|ResponseInterface|ResultInterface
+     * @return Redirect|ResponseInterface|ResultInterface
      * @throws LocalizedException
      */
     public function execute()

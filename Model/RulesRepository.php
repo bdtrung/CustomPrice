@@ -21,6 +21,7 @@
 
 namespace Mageplaza\CustomPrice\Model;
 
+use Magento\Framework\DataObject;
 use Mageplaza\CustomPrice\Model\ResourceModel\Rules\CollectionFactory;
 use Mageplaza\CustomPrice\Api\RulesManagementInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
@@ -56,7 +57,10 @@ class RulesRepository implements RulesManagementInterface
     }
 
     /**
-     * @inheritDoc
+     * @param string $email
+     * @param string $sku
+     *
+     * @return bool|DataObject
      */
     public function getRule($email, $sku)
     {

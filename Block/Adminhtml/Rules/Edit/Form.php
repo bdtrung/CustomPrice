@@ -31,7 +31,7 @@ use Magento\Framework\Exception\LocalizedException;
 class Form extends Generic
 {
     /**
-     * @return Generic
+     * @return Form
      * @throws LocalizedException
      */
     protected function _prepareForm()

@@ -28,7 +28,7 @@ $rule = $block->getRule($sku);
     <div class="price-box price-final_price" data-role="priceBox">
         <span class="price-container price-final_price tax weee">
             <span class="price-wrapper ">
-                <span class="price"><?= __('Your Price: %1', $block->formatPrice($rule->getCustomPrice())) ?></span>
+                <span class="price"><?= /** @noEscape */ __('Your Price: %1', $block->formatPrice($rule->getCustomPrice())) ?></span>
             </span>
         </span>
     </div>

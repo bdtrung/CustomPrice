@@ -46,7 +46,7 @@ class CustomPrice extends Column
     protected $storeManager;
 
     /**
-     * BargainPrice constructor.
+     * CustomPrice constructor.
      *
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
@@ -73,8 +73,8 @@ class CustomPrice extends Column
      * @param array $dataSource
      *
      * @return array
-     * @throws NoSuchEntityException
      * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function prepareDataSource(array $dataSource)
     {

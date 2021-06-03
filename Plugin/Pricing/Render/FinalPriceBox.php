@@ -58,6 +58,8 @@ class FinalPriceBox
     /**
      * @param $subject
      * @param $html
+     *
+     * @return mixed
      */
     public function afterToHtml($subject, $html)
     {

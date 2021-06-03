@@ -22,13 +22,9 @@
 namespace Mageplaza\CustomPrice\Block\Adminhtml\Rules\Edit\Tab;
 
 use IntlDateFormatter;
-use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
-use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Registry;
-use Magento\Store\Model\System\Store;
 use Mageplaza\CustomPrice\Model\Rules;
 
 /**

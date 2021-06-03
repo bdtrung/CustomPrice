@@ -1,0 +1,32 @@
+"Save and Continue Edit","Save and Continue Edit"
+Delete,Delete
+"Are you sure you want to delete this rule?","Are you sure you want to delete this rule?"
+"Edit Rule ID '%1'","Edit Rule ID '%1'"
+"New Rule","New Rule"
+General,General
+"Custom Price","Custom Price"
+"Customer Email","Customer Email"
+"Product SKU","Product SKU"
+"Active From","Active From"
+"Active To","Active To"
+"Rule Information","Rule Information"
+"This rule no longer exists.","This rule no longer exists."
+"You deleted the rule","You deleted the rule"
+"This rule no longer exists","This rule no longer exists"
+"This Rule no longer exists.","This Rule no longer exists."
+"Create Rule","Create Rule"
+"Rules List","Rules List"
+"Something went wrong while deleting. %1","Something went wrong while deleting. %1"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+Edit,Edit
+"Your Price: %1","Your Price: %1"
+CustomPrice,CustomPrice
+"General Configuration","General Configuration"
+Enable,Enable
+"Select <strong>Yes</strong> to enable this module.","Select <strong>Yes</strong> to enable this module."
+"Add New Rule","Add New Rule"
+"Delete Rule(s)","Delete Rule(s)"
+"Are you sure you want to delete the selected rule(s)?","Are you sure you want to delete the selected rule(s)?"
+ID,ID
+SKU,SKU
+"Created At","Created At"
