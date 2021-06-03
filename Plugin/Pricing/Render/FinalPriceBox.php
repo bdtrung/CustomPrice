@@ -19,36 +19,21 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace Mageplaza\CustomPrice\Plugin\Model;
+namespace Mageplaza\CustomPrice\Plugin\Pricing\Render;
 
-use Magento\Quote\Model\Quote\Item;
-use Magento\Quote\Model\Quote\Item\AbstractItem;
 use Magento\Store\Model\ScopeInterface;
 use Mageplaza\CustomPrice\Block\Product\View\CustomPrice;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
- * Class SetCustomPrice
- * @package Mageplaza\CustomPrice\Plugin\Model
+ * Class FinalPriceBox
+ * @package Mageplaza\CustomPrice\Pricing\Render
  */
-class SetCustomPrice
+class FinalPriceBox
 {
-    /**
-     * @var CustomPrice
-     */
     protected $customPrice;
-
-    /**
-     * @var ScopeConfigInterface
-     */
     protected $scopeConfig;
 
-    /**
-     * SetCustomPrice constructor.
-     *
-     * @param CustomPrice $customPrice
-     * @param ScopeConfigInterface $scopeConfig
-     */
     public function __construct(
         CustomPrice $customPrice,
         ScopeConfigInterface $scopeConfig
@@ -58,26 +43,27 @@ class SetCustomPrice
     }
 
     /**
-     * @param AbstractItem $subject
+     * @param $subject
+     * @param $html
      */
-    public function beforeGetCalculationPriceOriginal(AbstractItem $subject)
+    public function afterToHtml($subject, $html)
     {
         $isEnabled = $this->scopeConfig->getValue('mpcustomprice/general/enabled', ScopeInterface::SCOPE_STORE);
-
-        /** @var $item Item */
         if ($isEnabled) {
-            foreach ($subject->getQuote()->getAllItems() as $item) {
-                $rule = $this->customPrice->getRule($item->getSku());
-                if ($rule) {
-                    $item->setOriginalCustomPrice($rule->getCustomPrice());
-                } else {
-                    $item->setOriginalCustomPrice(null);
-                }
-            }
-        } else {
-            foreach ($subject->getQuote()->getAllItems() as $item) {
-                $item->setOriginalCustomPrice(null);
+            $productSku  = $subject->getSaleableItem()->getSku();
+            $rule = $this->customPrice->getRule($productSku);
+
+            if ($rule) {
+                $customPrice = $subject->getLayout()
+                    ->createBlock(CustomPrice::class)
+                    ->setTemplate('Mageplaza_CustomPrice::customprice.phtml')
+                    ->setProduct($subject->getSaleableItem())
+                    ->toHtml();
+
+                return $customPrice;
             }
         }
+
+        return $html;
     }
 }

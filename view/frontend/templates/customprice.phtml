@@ -26,13 +26,10 @@ $rule = $block->getRule($sku);
 ?>
 <?php if ($rule) : ?>
     <div class="price-box price-final_price" data-role="priceBox">
-        <span class="price-container price-final_price tax weee" itemprop="offers" itemscope=""
-              itemtype="http://schema.org/Offer">
-                <span id="product-price-12" data-price-amount="36" data-price-type="finalPrice" class="price-wrapper ">
-                    <span class="price"><?= __('Your Price: %1', $block->formatPrice($rule->getCustomPrice())) ?></span>
-                </span>
+        <span class="price-container price-final_price tax weee">
+            <span class="price-wrapper ">
+                <span class="price"><?= __('Your Price: %1', $block->formatPrice($rule->getCustomPrice())) ?></span>
+            </span>
         </span>
     </div>
-<?php else : ?>
-    <?= $block->getChildHtml('product.price.final.custom') ?>
 <?php endif; ?>

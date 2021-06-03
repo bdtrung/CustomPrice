@@ -20,8 +20,8 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
-        <plugin name="mpcustomprice_render_price" type="Mageplaza\CustomPrice\Plugin\Pricing\Render\FinalPriceBox"/>
-    </type>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="mpcustomprice_set_customprice" instance="Mageplaza\CustomPrice\Observer\SetCustomPrice"/>
+    </event>
 </config>
