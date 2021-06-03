@@ -51,8 +51,8 @@ class InstallSchema implements InstallSchemaInterface
             $connection->dropTable($installer->getTable(self::CUSTOMPRICE_RULES));
         }
 
-        $table = $connection->newTable($installer->getTable(self::CUSTOMPRICE_RULES));
-        $columns = $this->getFreeGiftColumns();
+        $table   = $connection->newTable($installer->getTable(self::CUSTOMPRICE_RULES));
+        $columns = $this->getCustomPriceColumns();
         foreach ($columns as $name => $column) {
             $table->addColumn($name, $column['type'], $column['size'], $column['options'], $column['comment']);
         }
@@ -65,53 +65,53 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @return array
      */
-    public function getFreeGiftColumns()
+    public function getCustomPriceColumns()
     {
         return [
-            'rule_id' => [
-                'type' => Table::TYPE_INTEGER,
-                'size' => null,
+            'rule_id'      => [
+                'type'    => Table::TYPE_INTEGER,
+                'size'    => null,
                 'options' => [
                     'identity' => true,
                     'nullable' => false,
-                    'primary' => true,
+                    'primary'  => true,
                     'unsigned' => true
                 ],
                 'comment' => 'Rule ID',
             ],
             'custom_price' => [
-                'type' => Table::TYPE_DECIMAL,
-                'size' => '12,2',
+                'type'    => Table::TYPE_DECIMAL,
+                'size'    => '12,2',
                 'options' => ['nullable' => false],
                 'comment' => 'Custom Price',
             ],
-            'email' => [
-                'type' => Table::TYPE_TEXT,
-                'size' => 255,
+            'email'        => [
+                'type'    => Table::TYPE_TEXT,
+                'size'    => 255,
                 'options' => ['nullable' => false],
                 'comment' => 'Customer Email',
             ],
-            'sku' => [
-                'type' => Table::TYPE_TEXT,
-                'size' => 255,
+            'sku'          => [
+                'type'    => Table::TYPE_TEXT,
+                'size'    => 255,
                 'options' => ['nullable' => false],
                 'comment' => 'Product SKU',
             ],
-            'from_date' => [
-                'type' => Table::TYPE_DATE,
-                'size' => null,
+            'from_date'    => [
+                'type'    => Table::TYPE_DATE,
+                'size'    => null,
                 'options' => [],
                 'comment' => 'Active From',
             ],
-            'to_date' => [
-                'type' => Table::TYPE_DATE,
-                'size' => null,
+            'to_date'      => [
+                'type'    => Table::TYPE_DATE,
+                'size'    => null,
                 'options' => [],
                 'comment' => 'Active To',
             ],
-            'created_at' => [
-                'type' => Table::TYPE_TIMESTAMP,
-                'size' => null,
+            'created_at'   => [
+                'type'    => Table::TYPE_TIMESTAMP,
+                'size'    => null,
                 'options' => ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
                 'comment' => 'Created At',
             ]

@@ -52,7 +52,7 @@ class Edit extends Rules
             $this->messageManager->addErrorMessage(__('This Rule no longer exists.'));
             $resultRedirect = $this->resultRedirectFactory->create();
             $resultRedirect->setPath('*/*/', [
-                'id' => $rule->getId(),
+                'id'       => $rule->getId(),
                 '_current' => true
             ]);
 

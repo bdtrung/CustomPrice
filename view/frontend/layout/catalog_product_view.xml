@@ -21,7 +21,16 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <referenceContainer name="alert.urls">
-        <block class="Mageplaza\CustomPrice\Block\Product\View\CustomPrice" name="mpcustomprice.view" template="Mageplaza_CustomPrice::customprice.phtml" ifconfig="mpcustomprice/general/enabled"/>
+    <referenceContainer name="product.info.price">
+        <referenceBlock name="product.price.final" remove="true"/>
+        <block class="Mageplaza\CustomPrice\Block\Product\View\CustomPrice" name="mpcustomprice.view" template="Mageplaza_CustomPrice::customprice.phtml" ifconfig="mpcustomprice/general/enabled">
+            <block class="Magento\Catalog\Pricing\Render" name="product.price.final.custom">
+                <arguments>
+                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                    <argument name="price_type_code" xsi:type="string">final_price</argument>
+                    <argument name="zone" xsi:type="string">item_view</argument>
+                </arguments>
+            </block>
+        </block>
     </referenceContainer>
 </page>

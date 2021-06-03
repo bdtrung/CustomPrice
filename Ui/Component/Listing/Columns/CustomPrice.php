@@ -21,6 +21,7 @@
 
 namespace Mageplaza\CustomPrice\Ui\Component\Listing\Columns;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -63,7 +64,7 @@ class CustomPrice extends Column
         array $data = []
     ) {
         $this->priceFormatter = $priceFormatter;
-        $this->storeManager = $storeManager;
+        $this->storeManager   = $storeManager;
 
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
@@ -73,14 +74,15 @@ class CustomPrice extends Column
      *
      * @return array
      * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function prepareDataSource(array $dataSource)
     {
         if (isset($dataSource['data']['items'])) {
             $name = $this->getData('name');
             foreach ($dataSource['data']['items'] as &$item) {
-                $storeId = isset($item['store_id']) ? $item['store_id'] : null;
-                $currency = $this->storeManager->getStore($storeId)->getCurrentCurrency();
+                $storeId     = isset($item['store_id']) ? $item['store_id'] : null;
+                $currency    = $this->storeManager->getStore($storeId)->getCurrentCurrency();
                 $item[$name] = $this->priceFormatter->format($item[$name], false, null, null, $currency);
             }
         }

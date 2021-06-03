@@ -41,8 +41,8 @@ class Save extends Rules
     {
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $data = $this->getRequest()->getPost('rule');
-        $redirectBack = $this->getRequest()->getParam('back', false);
+        $data           = $this->getRequest()->getPost('rule');
+        $redirectBack   = $this->getRequest()->getParam('back', false);
 
         if (!$data) {
             return $resultRedirect->setPath('*/*/');
@@ -52,8 +52,10 @@ class Save extends Rules
         $rule = $this->_initRule();
 
         try {
+            $this->productRepo->get($data['sku']);
             $rule->addData($data)->save();
         } catch (Exception $e) {
+            $this->messageManager->addErrorMessage(__($e->getMessage()));
             $resultRedirect->setPath('*/*/edit', ['id' => $rule->getId(), '_current' => true]);
         }
 

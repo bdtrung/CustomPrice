@@ -14,7 +14,7 @@
  * version in the future.
  *
  * @category    Mageplaza
- * @package     Mageplaza_NameYourPrice
+ * @package     Mageplaza_CustomPrice
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */

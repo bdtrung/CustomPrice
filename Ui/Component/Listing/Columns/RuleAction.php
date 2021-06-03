@@ -72,7 +72,7 @@ class RuleAction extends Column
                 if (isset($item['rule_id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
-                            'href' => $this->_urlBuilder->getUrl(
+                            'href'  => $this->_urlBuilder->getUrl(
                                 'mpcustomprice/rules/edit',
                                 ['id' => $item['rule_id']]
                             ),

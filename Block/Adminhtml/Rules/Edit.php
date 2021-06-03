@@ -69,8 +69,8 @@ class Edit extends Container
         $this->buttonList->add(
             'save_and_continue_edit',
             [
-                'class' => 'save',
-                'label' => __('Save and Continue Edit'),
+                'class'          => 'save',
+                'label'          => __('Save and Continue Edit'),
                 'data_attribute' => [
                     'mage-init' => ['button' => ['event' => 'saveAndContinueEdit', 'target' => '#edit_form']],
                 ]
@@ -83,8 +83,8 @@ class Edit extends Container
             $this->addButton(
                 'delete',
                 [
-                    'label' => __('Delete'),
-                    'class' => 'delete',
+                    'label'   => __('Delete'),
+                    'class'   => 'delete',
                     'onclick' => 'deleteConfirm(\'' . __('Are you sure you want to delete this rule?') . '\', \'' . $this->getUrl(
                             'mpcustomprice/rules/delete',
                             ['rule_id' => $ruleId]

@@ -21,6 +21,7 @@
 
 namespace Mageplaza\CustomPrice\Controller\Adminhtml\Rules;
 
+use Magento\Backend\Model\View\Result\Page as ResultPage;
 use Magento\Framework\View\Result\Page;
 use Mageplaza\CustomPrice\Controller\Adminhtml\Rules;
 
@@ -33,7 +34,7 @@ class Index extends Rules
     /**
      * execute the action
      *
-     * @return \Magento\Backend\Model\View\Result\Page|Page
+     * @return ResultPage|Page
      */
     public function execute()
     {

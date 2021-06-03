@@ -29,6 +29,7 @@ use Magento\Ui\Component\MassAction\Filter;
 use Mageplaza\CustomPrice\Model\RulesFactory;
 use Mageplaza\CustomPrice\Model\ResourceModel\Rules\CollectionFactory;
 use Mageplaza\CustomPrice\Model\ResourceModel\RulesFactory as ResourceFactory;
+use Magento\Catalog\Model\ProductRepository;
 
 /**
  * Class Rules
@@ -70,6 +71,11 @@ abstract class Rules extends Action
     public $collectionFactory;
 
     /**
+     * @var ProductRepository
+     */
+    protected $productRepo;
+
+    /**
      * Rules constructor.
      *
      * @param Context $context
@@ -79,6 +85,7 @@ abstract class Rules extends Action
      * @param ResourceFactory $resourceFactory
      * @param Filter $filter
      * @param CollectionFactory $collectionFactory
+     * @param ProductRepository $productRepository
      */
     public function __construct(
         Context $context,
@@ -87,14 +94,16 @@ abstract class Rules extends Action
         RulesFactory $rulesFactory,
         ResourceFactory $resourceFactory,
         Filter $filter,
-        CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory,
+        ProductRepository $productRepository
     ) {
-        $this->_coreRegistry = $coreRegistry;
+        $this->_coreRegistry      = $coreRegistry;
         $this->_resultPageFactory = $resultPageFactory;
-        $this->_rulesFactory = $rulesFactory;
-        $this->_resourceFactory = $resourceFactory;
-        $this->filter = $filter;
-        $this->collectionFactory = $collectionFactory;
+        $this->_rulesFactory      = $rulesFactory;
+        $this->_resourceFactory   = $resourceFactory;
+        $this->filter             = $filter;
+        $this->collectionFactory  = $collectionFactory;
+        $this->productRepo        = $productRepository;
 
         parent::__construct($context);
     }
@@ -104,8 +113,8 @@ abstract class Rules extends Action
      */
     protected function _initRule()
     {
-        $ruleId = (int)$this->getRequest()->getParam('id');
-        $rules = $this->_rulesFactory->create();
+        $ruleId = (int) $this->getRequest()->getParam('id');
+        $rules  = $this->_rulesFactory->create();
 
         if ($ruleId) {
             $rules->load($ruleId);

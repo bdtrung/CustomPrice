@@ -25,7 +25,6 @@ use IntlDateFormatter;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
-use Magento\Config\Model\Config\Source\Yesno;
 use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
@@ -38,40 +37,6 @@ use Mageplaza\CustomPrice\Model\Rules;
  */
 class General extends Generic implements TabInterface
 {
-    /**
-     * @var Yesno
-     */
-    protected $_yesno;
-
-    /**
-     * @var Store
-     */
-    public $systemStore;
-
-    /**
-     * General constructor.
-     *
-     * @param Yesno $yesno
-     * @param Context $context
-     * @param Registry $registry
-     * @param FormFactory $formFactory
-     * @param Store $systemStore
-     * @param array $data
-     */
-    public function __construct(
-        Yesno $yesno,
-        Context $context,
-        Registry $registry,
-        FormFactory $formFactory,
-        Store $systemStore,
-        array $data = []
-    ) {
-        $this->_yesno = $yesno;
-        $this->systemStore = $systemStore;
-
-        parent::__construct($context, $registry, $formFactory, $data);
-    }
-
     /**
      * @return Generic
      * @throws LocalizedException
@@ -86,7 +51,7 @@ class General extends Generic implements TabInterface
 
         $fieldset = $form->addFieldset('base_fieldset', [
             'legend' => __('General'),
-            'class' => 'fieldset-wide'
+            'class'  => 'fieldset-wide'
         ]);
 
         if ($rule->getId()) {
@@ -96,45 +61,45 @@ class General extends Generic implements TabInterface
         }
 
         $fieldset->addField('custom_price', 'text', [
-            'name' => 'custom_price',
-            'label' => __('Custom Price'),
+            'name'     => 'custom_price',
+            'label'    => __('Custom Price'),
             'required' => true,
-            'class' => 'validate-greater-than-zero validate-number-range'
+            'class'    => 'validate-greater-than-zero validate-number-range'
         ]);
 
         $fieldset->addField('email', 'text', [
-            'name' => 'email',
-            'label' => __('Customer Email'),
-            'title' => __('Customer Email'),
-            'text' => $this->escapeHtml($rule->getEmail()),
+            'name'     => 'email',
+            'label'    => __('Customer Email'),
+            'title'    => __('Customer Email'),
+            'text'     => $this->escapeHtml($rule->getEmail()),
             'required' => true,
-            'class' => 'validate-email'
+            'class'    => 'validate-email'
         ]);
 
         $fieldset->addField('sku', 'text', [
-            'name' => 'sku',
-            'label' => __('Product SKU'),
-            'title' => __('Product SKU'),
-            'text' => $this->escapeHtml($rule->getSku()),
+            'name'     => 'sku',
+            'label'    => __('Product SKU'),
+            'title'    => __('Product SKU'),
+            'text'     => $this->escapeHtml($rule->getSku()),
             'required' => true
         ]);
 
         $fieldset->addField('from_date', 'date', [
-            'name' => 'from_date',
-            'label' => __('Active From'),
-            'title' => __('Active From'),
+            'name'        => 'from_date',
+            'label'       => __('Active From'),
+            'title'       => __('Active From'),
             'date_format' => $this->_localeDate->getDateFormat(IntlDateFormatter::MEDIUM),
-            'class' => 'validate-date validate-date-range date-range-task_data-from',
-            'timezone' => false,
+            'class'       => 'validate-date validate-date-range date-range-task_data-from',
+            'timezone'    => false,
         ]);
 
         $fieldset->addField('to_date', 'date', [
-            'name' => 'to_date',
-            'label' => __('Active To'),
-            'title' => __('Active To'),
+            'name'        => 'to_date',
+            'label'       => __('Active To'),
+            'title'       => __('Active To'),
             'date_format' => $this->_localeDate->getDateFormat(IntlDateFormatter::MEDIUM),
-            'class' => 'validate-date validate-date-range date-range-task_data-to',
-            'timezone' => false,
+            'class'       => 'validate-date validate-date-range date-range-task_data-to',
+            'timezone'    => false,
         ]);
 
 

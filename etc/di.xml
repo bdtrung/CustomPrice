@@ -34,4 +34,7 @@
             <argument name="resourceModel" xsi:type="string">Mageplaza\CustomPrice\Model\ResourceModel\Rules</argument>
         </arguments>
     </virtualType>
+
+    <preference for="Mageplaza\CustomPrice\Api\RulesManagementInterface" type="Mageplaza\CustomPrice\Model\RulesRepository"/>
+    <preference for="Mageplaza\CustomPrice\Api\Data\RulesInterface" type="Mageplaza\CustomPrice\Model\Rules"/>
 </config>

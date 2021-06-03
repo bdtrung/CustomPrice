@@ -30,13 +30,13 @@ interface RulesInterface
     /**
      * Constants defined for keys of array, makes typos less likely
      */
-    const RULE_ID    = 'rule_id';
+    const RULE_ID      = 'rule_id';
     const CUSTOM_PRICE = 'custom_price';
-    const EMAIL      = 'email';
-    const SKU        = 'sku';
-    const FROM_DATE  = 'from_date';
-    const TO_DATE    = 'to_date';
-    const CREATED_AT = 'created_at';
+    const EMAIL        = 'email';
+    const SKU          = 'sku';
+    const FROM_DATE    = 'from_date';
+    const TO_DATE      = 'to_date';
+    const CREATED_AT   = 'created_at';
 
     /**
      * @return int
