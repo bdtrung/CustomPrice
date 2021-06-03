@@ -48,11 +48,11 @@ class Edit extends Rules
     public function execute()
     {
         $rule = $this->_initRule();
-        if (!$rule->getId() && $this->getRequest()->getParam('id')) {
+        if (!$rule->getRuleId() && $this->getRequest()->getParam('rule_id')) {
             $this->messageManager->addErrorMessage(__('This Rule no longer exists.'));
             $resultRedirect = $this->resultRedirectFactory->create();
             $resultRedirect->setPath('*/*/', [
-                'id'       => $rule->getId(),
+                'id'       => $rule->getRuleId(),
                 '_current' => true
             ]);
 
@@ -63,7 +63,7 @@ class Edit extends Rules
         $resultPage->setActiveMenu('Mageplaza_CustomPrice::rules');
         $resultPage->getConfig()->getTitle()
             ->set(__('Custom Price'))
-            ->prepend($rule->getId() ? $rule->getProductName() : __('Create Rule'));
+            ->prepend($rule->getRuleId() ? $rule->getProductName() : __('Create Rule'));
 
         return $resultPage;
     }

@@ -74,7 +74,7 @@ class RuleAction extends Column
                         'edit' => [
                             'href'  => $this->_urlBuilder->getUrl(
                                 'mpcustomprice/rules/edit',
-                                ['id' => $item['rule_id']]
+                                ['rule_id' => $item['rule_id']]
                             ),
                             'label' => __('Edit')
                         ]

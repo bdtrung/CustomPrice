@@ -56,11 +56,11 @@ class Save extends Rules
             $rule->addData($data)->save();
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage(__($e->getMessage()));
-            $resultRedirect->setPath('*/*/edit', ['id' => $rule->getId(), '_current' => true]);
+            $resultRedirect->setPath('*/*/edit', ['rule_id' => $rule->getId(), '_current' => true]);
         }
 
         return $redirectBack
-            ? $resultRedirect->setPath('*/*/edit', ['id' => $rule->getRuleId()])
+            ? $resultRedirect->setPath('*/*/edit', ['rule_id' => $rule->getRuleId()])
             : $resultRedirect->setPath('*/*/');
     }
 }

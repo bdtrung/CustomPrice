@@ -113,7 +113,7 @@ abstract class Rules extends Action
      */
     protected function _initRule()
     {
-        $ruleId = (int) $this->getRequest()->getParam('id');
+        $ruleId = (int) $this->getRequest()->getParam('rule_id');
         $rules  = $this->_rulesFactory->create();
 
         if ($ruleId) {

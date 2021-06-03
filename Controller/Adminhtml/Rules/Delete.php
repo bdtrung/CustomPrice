@@ -19,16 +19,17 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace Mageplaza\CustomPrice\Controller\Adminhtml\Rule;
+namespace Mageplaza\CustomPrice\Controller\Adminhtml\Rules;
 
 use Exception;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect as ResultRedirect;
 use Magento\Framework\Controller\ResultInterface;
 use Mageplaza\CustomPrice\Controller\Adminhtml\Rules;
 
 /**
  * Class Delete
- * @package Mageplaza\CustomPrice\Controller\Adminhtml\Rule
+ * @package Mageplaza\CustomPrice\Controller\Adminhtml\Rules
  */
 class Delete extends Rules
 {
@@ -57,5 +58,17 @@ class Delete extends Rules
         $this->messageManager->addErrorMessage(__('This rule no longer exists'));
 
         return $this->getResultRedirect('mpcustomprice/*/');
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return ResultRedirect
+     */
+    protected function getResultRedirect($path, array $params = [])
+    {
+        $resultRedirect = $this->resultRedirectFactory->create();
+
+        return $resultRedirect->setPath($path, $params);
     }
 }
