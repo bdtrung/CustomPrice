@@ -59,6 +59,8 @@ class Save extends Rules
             $resultRedirect->setPath('*/*/edit', ['rule_id' => $rule->getId(), '_current' => true]);
         }
 
+        $this->messageManager->addSuccessMessage(__('The Rule has been saved'));
+
         return $redirectBack
             ? $resultRedirect->setPath('*/*/edit', ['rule_id' => $rule->getRuleId()])
             : $resultRedirect->setPath('*/*/');
