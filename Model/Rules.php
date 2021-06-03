@@ -21,22 +21,70 @@
 
 namespace Mageplaza\CustomPrice\Model;
 
+use Magento\Catalog\Model\Product;
+use Magento\Framework\Data\Collection\AbstractDb;
+use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Registry;
 use Mageplaza\CustomPrice\Api\Data\RulesInterface;
 use Mageplaza\CustomPrice\Model\ResourceModel\Rules as ResourceRules;
+use Magento\Catalog\Model\ProductRepository;
 
 /**
  * Class Rules
  * @package Mageplaza\CustomPrice\Model
  */
-class Rules extends AbstractModel implements RulesInterface
+class Rules extends AbstractModel implements RulesInterface, IdentityInterface
 {
+    /**
+     * Cache tag
+     *
+     * @var string
+     */
+    const CACHE_TAG = 'mageplaza_customprice_rules';
+
     /**
      * Event prefix
      *
      * @var string
      */
     protected $_eventPrefix = 'mageplaza_customprice_rules';
+
+    /**
+     * Cache tag
+     *
+     * @var string
+     */
+    protected $_cacheTag = 'mageplaza_customprice_rules';
+
+    /**
+     * @var ProductRepository
+     */
+    protected $productRepo;
+
+    /**
+     * Rules constructor.
+     *
+     * @param Context $context
+     * @param Registry $registry
+     * @param AbstractResource|null $resource
+     * @param AbstractDb|null $resourceCollection
+     * @param ProductRepository $productRepo
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        ProductRepository $productRepo,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        $this->productRepo = $productRepo;
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
 
     /**
      * Initialize resource model
@@ -158,5 +206,24 @@ class Rules extends AbstractModel implements RulesInterface
     public function setCreatedAt($value)
     {
         return $this->setData(self::CREATED_AT, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIdentities()
+    {
+        $identities = [
+            self::CACHE_TAG . '_' . $this->getId(),
+        ];
+
+
+        if ($this->hasDataChanges() || $this->isDeleted()) {
+            $productId = $this->productRepo->get($this->getSku())->getId();
+
+            $identities[] = Product::CACHE_TAG . '_' . $productId;
+        }
+
+        return $identities;
     }
 }

@@ -31,9 +31,22 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
  */
 class FinalPriceBox
 {
+    /**
+     * @var CustomPrice
+     */
     protected $customPrice;
+
+    /**
+     * @var ScopeConfigInterface
+     */
     protected $scopeConfig;
 
+    /**
+     * FinalPriceBox constructor.
+     *
+     * @param CustomPrice $customPrice
+     * @param ScopeConfigInterface $scopeConfig
+     */
     public function __construct(
         CustomPrice $customPrice,
         ScopeConfigInterface $scopeConfig
@@ -50,8 +63,8 @@ class FinalPriceBox
     {
         $isEnabled = $this->scopeConfig->getValue('mpcustomprice/general/enabled', ScopeInterface::SCOPE_STORE);
         if ($isEnabled) {
-            $productSku  = $subject->getSaleableItem()->getSku();
-            $rule = $this->customPrice->getRule($productSku);
+            $productSku = $subject->getSaleableItem()->getSku();
+            $rule       = $this->customPrice->getRule($productSku);
 
             if ($rule) {
                 $customPrice = $subject->getLayout()

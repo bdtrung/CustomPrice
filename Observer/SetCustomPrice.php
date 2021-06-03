@@ -43,6 +43,12 @@ class SetCustomPrice implements ObserverInterface
      */
     protected $customPrice;
 
+    /**
+     * SetCustomPrice constructor.
+     *
+     * @param ScopeConfigInterface $scopeConfig
+     * @param CustomPrice $customPrice
+     */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         CustomPrice $customPrice
