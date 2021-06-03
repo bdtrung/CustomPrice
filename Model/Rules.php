@@ -217,10 +217,8 @@ class Rules extends AbstractModel implements RulesInterface, IdentityInterface
             self::CACHE_TAG . '_' . $this->getId(),
         ];
 
-
         if ($this->hasDataChanges() || $this->isDeleted()) {
-            $productId = $this->productRepo->get($this->getSku())->getId();
-
+            $productId    = $this->productRepo->get($this->getSku())->getId();
             $identities[] = Product::CACHE_TAG . '_' . $productId;
         }
 
